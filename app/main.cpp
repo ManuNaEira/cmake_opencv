@@ -1,23 +1,16 @@
-#include "opencv2/core/core.hpp"
-#include "opencv2/highgui/highgui.hpp"
-
-using namespace cv;
+#include "opencv2/core.hpp"
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/imgproc.hpp"
 
 int main(int argc, char** argv) {
-    // Create a GUI window named "Output"
-    namedWindow("Output", 1);
-
     // Initialize a 120x350 matrix of black pixels
-    Mat output = Mat::zeros(120, 350, CV_8UC3);
+    cv::Mat output = cv::Mat::zeros(120, 350, CV_8UC3);
 
     // Write text on the matrix
-    putText(output, "Hello World :)", cvPoint(15, 70), FONT_HERSHEY_PLAIN, 3, cvScalar(0, 255, 0), 4);
+    cv::putText(output, "Hello World :)", cv::Point(15, 70), cv::FONT_HERSHEY_PLAIN, 3, cv::Scalar(0, 255, 0), 4);
 
-    // Display the image
-    imshow("Output", output);
-
-    // Wait for the user to press any key
-    waitKey(0);
+    // Write the image to the disk
+    cv::imwrite("Output.jpg", output);
 
     return 0;
 }
